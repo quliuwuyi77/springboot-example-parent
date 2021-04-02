@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑定时任务</title>
+</head>
+<body>
+<h1>编辑定时任务</h1>
+<form th:action="@{/quartz/edit}" method="post">
+    <input type="hidden" name="id" th:value="${schedule.id}" />
+    任务表达式： <input width="300px" type="text" name="cron" th:value="${schedule.cron}" /></br>
+    job工作类： <input width="300px" type="text" name="job_name" th:value="${schedule.jobName}" /></br>
+    job分组：<input width="300px" type="text" name="job_group" th:value="${schedule.jobGroup}" /></br>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>quartz定时任务管理</title>
+</head>
+<body>
+<h1 style="text-align: center">定时任务管理</h1>
+<table style="text-align: center" align="center" border="1px" width="80%">
+    <tr>
+        <td>任务id</td>
+        <td>任务表达式</td>
+        <td>任务状态</td>
+        <td>job工作类</td>
+        <td>job分组</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="q : ${quartzList}">
+        <td th:text="${q.id}"></td>
+        <td th:text="${q.cron}"></td>
+        <td th:text="${q.status}"></td>
+        <td th:text="${q.jobName}"></td>
+        <td th:text="${q.jobGroup}"></td>
+        <td th:switch ="${q.status} == 0">
+            <a th:case="true" th:href="@{/quartz/edit(id=${q.id},status=1)}">启动</a>
+            <a th:case="false" th:href="@{/quartz/edit(id=${q.id},status=0)}">停止</a>
+            <a th:href="@{'/quartz/proSave/'+${q.id}}">编辑</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
